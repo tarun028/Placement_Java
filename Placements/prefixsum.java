@@ -1,16 +1,17 @@
 import java.util.*;
+
 public class prefixsum {
 
-    public static void input(int arr[],int n){
-        int a[]=new int[n];
-        for(int i=0;i<n;i++){
-            Scanner sc = new Scanner(System.in);
-            sc.nextInt();
-            System.out.println(a);
-        }
-    }
-    public static void main(String[] args) {
+    public static void input(int arr[], int n) {
         Scanner sc = new Scanner(System.in);
-        input(null,5);
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(Arrays.toString(arr)); // Print the array
+    }
+
+    public static void main(String[] args) {
+        int a[] = new int[5];
+        input(a, 5);
     }
 }
