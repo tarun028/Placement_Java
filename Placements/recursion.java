@@ -25,6 +25,11 @@ public class recursion {
         sum=sum+i;
         sum(i+1,n,sum);
     }
+
+
+    public static void fact(int n){
+        
+    }
     public static void main(String[] args) {
         int n=1;
         //printplus(n);
