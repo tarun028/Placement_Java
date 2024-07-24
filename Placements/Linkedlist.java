@@ -244,30 +244,55 @@ public class Linkedlist {
 
     }
 
+    public boolean isCycle(){
+        Node slow= head;
+        Node fast=head;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void removeCycle(){
+        //detect cycle 
+        Node slow = head;
+        Node fast = head;
+
+        //find meeting point
+
+        //remove cycle -> last.next = null
+    }
+ 
 
 
     public static void main(String[] args) {
         Linkedlist ll = new Linkedlist();
-        ll.addFirst(2);
+        //ll.addFirst(2);
         //ll.print();
-        ll.addFirst(1);
+        //ll.addFirst(1);
         //ll.print();
-        ll.addLast(2);
+        //ll.addLast(2);
         //ll.print();
-        ll.addLast(1);
-        ll.add(2, 9);
+        //ll.addLast(1);
+        //ll.add(2, 9);
         //ll.print();
         // System.err.println(ll.size);
-        // //ll.removeFirst();
+        //ll.removeFirst();
         // System.err.println(ll.size);
         // //ll.removeLast();
         // System.err.println(ll.size);
         //ll.print();
         // System.out.println(ll.recSearch(3));
         // System.out.println(ll.itrSearch(8));
-        ll.print();
-        //ll.reverse();
-        ll.deleteNthfromEnd(3);
-        ll.print();
+        // ll.print();
+        // //ll.reverse();
+        // ll.deleteNthfromEnd(3);
+        // ll.print();
     }
 }
