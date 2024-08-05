@@ -4,11 +4,21 @@ public class atbottom {
 
     public static void pushAtBot(Stack<Integer> s,int data){
         if(s.isEmpty()){
-            s.add(4);
+            s.add(data);
         }
         int top=s.pop();
         pushAtBot(s, data);
         s.push(top);
+    }
+
+    public static void reverse(Stack<Integer> s){
+        if(s.empty()){
+            return;
+        }
+        int top=s.pop();
+        reverse(s);
+        pushAtBot(s, top);
+
     }
     public static void main(String[] args) {
         Stack<Integer> s = new Stack<>();
@@ -16,12 +26,7 @@ public class atbottom {
         s.add(2);
         s.add(3);
 
-        pushAtBot(s, 4);
-
-
-        while(!s.empty()){
-            System.out.println(s.pop());
-        }
+        reverse(s);
 
     }
 }

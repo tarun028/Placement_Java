@@ -1,5 +1,6 @@
 import java.util.*;
 public class stackll {
+    
     static class Node{
         int data;
         Node next;

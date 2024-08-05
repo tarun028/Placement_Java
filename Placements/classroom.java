@@ -15,5 +15,7 @@ public class classroom {
         //remove
         ll.removeLast();
         ll.removeFirst();
+
+    
     }
 }
