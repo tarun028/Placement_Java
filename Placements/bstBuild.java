@@ -9,9 +9,6 @@ public class bstBuild {
         }
     }
 
-    public static Node insert(Node root,int val){
-
-    }
 
     public static void main(String[] args) {
         int value[]={5,1,3,4,2,7};

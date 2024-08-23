@@ -1,6 +1,5 @@
 import java.util.*;
 
-//import circularqueue.Queue;
 public class graph {
 
     static class Edge{
@@ -52,10 +51,99 @@ public class graph {
 
             }
         }
+    }
 
+    public static void dfs(ArrayList<Edge> graph[],int curr,boolean vis[]){
+        System.out.println(curr+" ");
+        vis[curr]=true;
+
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e= graph[curr].get(i);
+
+            if(vis[e.dest]==false){
+                dfs(graph, e.dest, vis);
+            }
+        }
+    }
+
+    public static void find(ArrayList<Edge> graph[],int curr,boolean vis[], String path,int target){
+       
+        if(curr==target){
+            System.out.println(path);
+            return;
+        }
+
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e= graph[curr].get(i);
+            
+            if(!vis[curr]){
+                vis[curr]=true;
+                find(graph, e.dest, vis, path+e.dest, target);
+
+                vis[curr]=false;
+            }
+        }
+    }
+
+    public static boolean undirectedFindCycle(ArrayList<Edge> graph[],int curr,boolean vis[],int par){
+        //curr will be parent in next iteration
+
+        vis[curr]=true;
+
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e= graph[curr].get(i);
+
+            if(vis[e.dest]==true && e.dest!=par){
+                return true;
+            }
+
+            else if(!vis[e.dest]){
+                    if(undirectedFindCycle(graph, e.dest, vis, curr)){
+                        return true;
+                    }
+            }
+        }
+
+        return false;
 
     }
+
+    public static void topSortUtil(ArrayList<Edge> graph[],int curr,boolean vis[],Stack<Integer> stack){
+        vis[curr]=true;
+
+        for(int i=0;i<graph[curr].size();i++){
+            Edge e=graph[curr].get(i);
+
+            if(!vis[e.dest]){
+                topSortUtil(graph, e.dest, vis, stack);
+            }
+        }
+        stack.push(curr);
+    }
+
+    public static void topSort(ArrayList<Edge> graph[],int V){
+        boolean vis[]=new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                topSortUtil(graph, i, vis, stack);
+            }
+        }
+        while(!stack.isEmpty()){
+            System.out.println(stack.pop()+" ");
+        }
+    }
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
+
         int V=4;
         ArrayList<Edge> graph[]=new ArrayList[V];
         createGraph(graph);
@@ -67,6 +155,11 @@ public class graph {
         }
         boolean visited[]=new boolean[V];
 
-        bfs(graph, visited, V);
+        //bfs(graph, visited, V);
+        int src=0;
+        int target=3;
+        //dfs(graph, 0, visited);
+        //find(graph, src, visited, "0", target);
+        System.out.println(undirectedFindCycle(graph, 0, visited, -1));
     }
 }
